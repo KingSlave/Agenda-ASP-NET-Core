@@ -1,6 +1,36 @@
-﻿@{
+﻿@model List<Agenda.Models.Contacto>
+@{
     ViewData["Title"] = "Consulta de contactos";
 }
 <h2>@ViewData["Title"]</h2>
 
-<p>Interfaz para consulta de contactos</p>
+<div class="container">
+    <table class="table table-condensed table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Telefono de casa</th>
+                <th>Telefono celular</th>
+                <th>Nota</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lista in Model)
+            {
+            <tr>
+                <td>Nombre A</td>
+                <td>Email A</td>
+                <td>Tel A</td>
+                <td>Tel B</td>
+                <td>NOTA A</td>
+                <td>
+                    <a class="btn btn-info" asp-action="editar" asp-controller="Home" asp-route-id="@lista.email">Editar</a>
+                    <button class="btn btn-danger">Borrar</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -26,18 +26,24 @@ namespace Agenda.Controllers
         [HttpGet]
         public IActionResult Consultar()
         {
+            List<Contacto> contactos = new List<Contacto>();
+
+            contactos.Add(new Contacto("king.slave@gmail.com"));
+            contactos.Add(new Contacto("itsh.sistemas@gmail.com"));
+            contactos.Add(new Contacto("correo@gmail.com"));
+
             //ViewData["Message"] = "Your contact page.";
 
-            return View();
+            return View(contactos);
         }
 
         [HttpGet]
-        public IActionResult Editar()
+        public IActionResult Editar(string id)
         {
-            //ViewData["Message"] = "Your contact page.";
+            Contacto c = new Contacto();
+            c.email = id;
 
-
-            return View();
+            return View(c);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

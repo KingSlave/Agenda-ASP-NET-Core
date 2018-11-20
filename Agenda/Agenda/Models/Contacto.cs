@@ -12,5 +12,9 @@ namespace Agenda.Models
         public Contacto()
         {
         }
+        public Contacto(string email){
+            this.email = email;
+
+        }
     }
 }
