@@ -31,6 +31,9 @@ namespace Agenda
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            var cadenaConexion = Configuration.GetConnectionString("DefaultConnection");
+
+            Agenda.Models.Contacto.cadenaConexion = cadenaConexion;
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

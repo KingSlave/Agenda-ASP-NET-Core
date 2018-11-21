@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Agenda.Models;
+using MySql.Data.MySqlClient;
 
 namespace Agenda.Controllers
 {
@@ -23,19 +24,29 @@ namespace Agenda.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Registrar(Contacto model)
+        {
+            model.Guardar();
+
+            return Redirect("/Home/Consultar");
+        }
+
         [HttpGet]
         public IActionResult Consultar()
         {
-            List<Contacto> contactos = new List<Contacto>();
-
-            contactos.Add(new Contacto("king.slave@gmail.com"));
-            contactos.Add(new Contacto("itsh.sistemas@gmail.com"));
-            contactos.Add(new Contacto("correo@gmail.com"));
-
-            //ViewData["Message"] = "Your contact page.";
-
+            List<Contacto> contactos = new Contacto().Consultar();
             return View(contactos);
         }
+
+        [HttpGet]
+        public IActionResult Eliminar(string id){
+            Contacto c = new Contacto(id);
+            c.Eliminar();
+
+            return Redirect("/Home/Consultar");
+        }
+
 
         [HttpGet]
         public IActionResult Editar(string id)
